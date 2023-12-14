@@ -31,12 +31,12 @@ function controllerInput(){
     const stickDeadZone = .4;
     const leftRightValue = gamepad.axes[0];
     if (leftRightValue >= stickDeadZone) {
-     while ((leftRightValue >= stickDeadZone) { 
+     while (leftRightValue >= stickDeadZone) { 
      rightPressed = true;
       document.body.innerHTML = 'Joystick pressed right.'
      }
     } else if (leftRightValue <= -stickDeadZone) {
-      while (leftRightValue2 <= -stickDeadZone) {
+      while (leftRightValue <= -stickDeadZone) {
        leftPressed = true;
       document.body.innerHTML = 'Joystick pressed left.'
     };
