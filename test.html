@@ -93,16 +93,17 @@ function controllerInput2(){
      upPressed2 = true;
       document.body.innerHTML = 'Right joystick pressed up.'
     }
-   }
-}
   downPressed2 = false
  upPressed2 = false
+    }
+ }
+}
 function inputLoop(){
   controllerInput();
   controllerInput2();
  requestAnimationFrame(inputLoop);
 };
-}
+   
 inputLoop();
   </script>
  </body>
