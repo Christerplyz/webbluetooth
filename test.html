@@ -26,7 +26,6 @@ window.addEventListener('gamepaddisconnected', (event) => {
 });
 
 function controllerInput(){
-  if (controllerIndex !== null) {
     const gamepad = navigator.getGamepads()[controllerIndex];
     const stickDeadZone = .4;
     const leftRightValue = gamepad.axes[0];
@@ -60,10 +59,8 @@ function controllerInput(){
    downPressed = false
  upPressed = false
   };
-};
 
 function controllerInput2(){
- if (controllerIndex !== null){
   const gamepad2 = navigator.getGamepads()[controllerIndex];
     const stickDeadZone2 = .4;
   const leftRightValue2 = gamepad2.axes[4];
@@ -97,10 +94,12 @@ function controllerInput2(){
   downPressed2 = false
  upPressed2 = false 
  }
-}
+
 function inputLoop(){
-  controllerInput();
+  if (controllerIndex !== null){
+   controllerInput();
  controllerInput2();
+  }
  requestAnimationFrame(inputLoop);
 }
    
