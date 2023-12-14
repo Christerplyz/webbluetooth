@@ -15,6 +15,20 @@ let pressedRight2 = false
 let pressedDown1 = false
 let pressedDown2 = false
 
+bluetoothBtn.addEventListener('click', async function onClick() {
+  try {
+    const options = {
+      filters: [{
+        services: [0x1800, 0x180F, 0x181C]
+      }]
+    };
+    gamepad = await navigator.bluetooth.requestDevice(options);
+    console.log(device);
+
+  } catch (error) {
+    console.log("Something went wrong. " + error);
+  }
+ 
 Window.addEventListener(gamepadconnected, function(event) {
   gamepad = navigator.getGamepads()
 })
