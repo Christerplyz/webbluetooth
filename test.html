@@ -4,109 +4,75 @@
  <body>
   <script src="https://www.puck-js.com/puck.js"></script>
   <script>
-   let gamepad = null
+   let controllerIndex = null;
 
-let pressedUp1 = false
-let pressedUp2 = false
-let pressedLeft1 = false
-let pressedLeft2 = false
-let pressedRight1 = false
-let pressedRight2 = false
-let pressedDown1 = false
-let pressedDown2 = false
-const bluetoothBtn = document.getElementById('bluetoothDevices');
-   
-bluetoothBtn.addEventListener('click', async function onClick() {
-  try {
-    const options = {
-      filters: [{
-        services: [0x1800, 0x180F, 0x181C]
-      }]
+let pressedUp = false;
+let pressedDown = false;
+let pressedLeft = false;
+let pressedRight = false;
+let pressedUp2 = false;
+let pressedDown2 = false;
+let pressedLeft2 = false;
+let pressedRight2 = false;
+
+window.addEventListener('gamepadconnected', (event) => {
+  controllerIndex = event.gamepad.index;
+  document.body.innerHTML = 'controller connected';
+});
+
+window.addEventListener('gamepaddisconnected', (event) => {
+  controllerIndex = null;
+  document.body.innerHTML = 'controller disconnected';
+});
+
+function controllerInput(){
+  if (controllerIndex !== null) {
+    const gamepad = navigator.getGamepads()[controllerIndex];
+    const stickDeadZone = .4;
+    const leftRightValue = gamepad.axes[0];
+    if (leftRightValue >= stickDeadZone) {
+      rightPressed = true;
+      document.body.innerHTML = 'Joystick pressed right.'
+    } else if (leftRightValue <= -stickDeadZone) {
+      leftPressed = true;
+      document.body.innerHTML = 'Joystick pressed left.'
     };
-    gamepad = await navigator.bluetooth.requestDevice(options);
-    console.log(device);
+    
+    const upDownValue = gamepad.axes[1];
 
-  } catch (error) {
-    console.log("Something went wrong. " + error);
-  }
- 
-Window.addEventListener(gamepadconnected, function(event) {
-  gamepad = navigator.getGamepads()
-})
+    if (upDownValue >= stickDeadZone) {
+      downPressed = true;
+      document.body.innerHTML = 'Stick pressed down.';
+    } else if (upDownValue <= -stickDeadZone) {
+      upPressed = true;
+      document.body.innerHTML = 'Stick pressed up.'
+    }
+   const leftRightValue2 = gamepad.axes[4];
+    if (leftRightValue2 >= stickDeadZone) {
+      rightPressed2 = true;
+      document.body.innerHTML = 'Joystick pressed right.'
+    } else if (leftRightValue2 <= -stickDeadZone) {
+      leftPressed2 = true;
+      document.body.innerHTML = 'Right Joystick pressed left.'
+    };
+    
+    const upDownValue2 = gamepad.axes[3];
 
-Window.addEventListener(gamepadconnect, function(event) {
-  gamepad = null
-})
+    if (upDownValue2 >= stickDeadZone) {
+      downPressed2 = true;
+      document.body.innerHTML = 'Right Stick pressed down.';
+    } else if (upDownValue2 <= -stickDeadZone) {
+      upPressed2 = true;
+      document.body.innerHTML = 'Right Stick pressed up.'
+    }
+  };
+};
+function inputLoop(){
+  controllerInput();
+ requestAnimationFrame(inputLoop);
+};
 
-function joystickPressed() {
-  let deadzone = 0.4
-  let upDownValue1 = gamepad.axes[1]
-  let upDownValue2 = gamepad.axes[3]
-  let leftRightValue1 = gamepad.axes[2]
-  let leftRightValue2 = gamepad.axes[4]
-
-  if (upDownValue1 > deadzone) {
-    while (upDownValue1 > deadzone) {
-      pressedDown1 = true
-      document.body.innerHTML = 'Controller pressed down.'
-    }
-    pressedDown1 = false
-  } else if (upDownValue1 < -deadzone) {
-    while (upDownValue1 < -deadzone) {
-      pressedUp1 = true
-      document.body.innerHTML = 'Controller pressed up.'
-    }
-    pressedUp1 = false
-   pressedDown1 = false
-  }
-  if (leftRightValue1 > deadzone) {
-    while (leftRightValue1 > deadzone) {
-      pressedRight1 = true
-      document.body.innerHTML = 'Controller pressed right.'
-    }
-  } else if (leftRightValue1 < -deadzone) {
-    while (leftRightValue1 < -deadzone) {
-      pressedLeft1 = true
-      document.body.innerHTML = 'Controller pressed left.'
-    }
-  }
- pressedLeft1 = false
- pressedRight1 = false
- 
- if (upDownValue2 > deadzone) {
-    while (upDownValue2 > deadzone) {
-      pressedDown2 = true
-      document.body.innerHTML = 'Right joystick pressed down.'
-    }
-    pressedDown2 = false
-  } else if (upDownValue2 < -deadzone) {
-    while (upDownValue2 < -deadzone) {
-      pressedUp2 = true
-      document.body.innerHTML = 'Right joystick pressed up.'
-    }
-    pressedUp2 = false
-    pressedDown2 = false
-  
-  }
- if (leftRightValue2 > deadzone) {
-    while (leftRightValue2 > deadzone) {
-      pressedRight2 = true
-      document.body.innerHTML = 'Right joystick pressed right.'
-    }
-  } else if (leftRightValue2 < -deadzone) {
-    while (leftRightValue2 < -deadzone) {
-      pressedLeft2 = true
-      document.body.innerHTML = 'Right joystick pressed left.'
-    }
-  }
-  pressedLeft2 = false
-  pressedRight2 = false
-}
-
-function gameLoop() {
-  joystickPressed()
-  requestAnimationFrame(gameLoop)
-}
+inputLoop();
   </script>
  </body>
 </html>
