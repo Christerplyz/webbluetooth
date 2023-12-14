@@ -31,40 +31,64 @@ function controllerInput(){
     const stickDeadZone = .4;
     const leftRightValue = gamepad.axes[0];
     if (leftRightValue >= stickDeadZone) {
-      rightPressed = true;
+     while ((leftRightValue >= stickDeadZone) { 
+     rightPressed = true;
       document.body.innerHTML = 'Joystick pressed right.'
+     }
     } else if (leftRightValue <= -stickDeadZone) {
-      leftPressed = true;
+      while (leftRightValue2 <= -stickDeadZone) {
+       leftPressed = true;
       document.body.innerHTML = 'Joystick pressed left.'
     };
+  }
+  leftPressed = false
+ rightPressed = false
     
     const upDownValue = gamepad.axes[1];
 
     if (upDownValue >= stickDeadZone) {
-      downPressed = true;
+     while (upDownValue >= stickDeadZone) { 
+     downPressed = true;
       document.body.innerHTML = 'Stick pressed down.';
     } else if (upDownValue <= -stickDeadZone) {
-      upPressed = true;
+     while (upDownValue <= -stickDeadZone) 
+     upPressed = true;
       document.body.innerHTML = 'Stick pressed up.'
     }
+  }
+   downPressed = false
+ upPressed = false
+ 
    const leftRightValue2 = gamepad.axes[4];
     if (leftRightValue2 >= stickDeadZone) {
-      rightPressed2 = true;
-      document.body.innerHTML = 'Joystick pressed right.'
+      while (leftRightValue2 >= stickDeadZone) {
+       rightPressed2 = true;
+      document.body.innerHTML = 'Right Joystick pressed right.'
+      }
     } else if (leftRightValue2 <= -stickDeadZone) {
-      leftPressed2 = true;
+      while (leftRightValue2 <= -stickDeadZone) {
+       leftPressed2 = true;
       document.body.innerHTML = 'Right Joystick pressed left.'
     };
+   }
+   leftPressed2 = false
+ rightPressed2 = false
     
     const upDownValue2 = gamepad.axes[3];
 
     if (upDownValue2 >= stickDeadZone) {
-      downPressed2 = true;
+     while (upDownValue2 >= stickDeadZone) { 
+     downPressed2 = true;
       document.body.innerHTML = 'Right Stick pressed down.';
+     }
     } else if (upDownValue2 <= -stickDeadZone) {
-      upPressed2 = true;
+     while (upDownValue2 <= -stickDeadZone) { 
+     upPressed2 = true;
       document.body.innerHTML = 'Right Stick pressed up.'
     }
+   }
+  downPressed2 = false
+ upPressed2 = false
   };
 };
 function inputLoop(){
