@@ -49,11 +49,11 @@ function controllerInput(){
     if (upDownValue >= stickDeadZone) {
      while (upDownValue >= stickDeadZone) { 
      downPressed = true;
-      document.body.innerHTML = 'Stick pressed down.';
+      document.body.innerHTML = 'Joystick pressed down.';
     } else if (upDownValue <= -stickDeadZone) {
      while (upDownValue <= -stickDeadZone) 
      upPressed = true;
-      document.body.innerHTML = 'Stick pressed up.'
+      document.body.innerHTML = 'Joystick pressed up.'
     }
   }
    downPressed = false
@@ -79,12 +79,12 @@ function controllerInput(){
     if (upDownValue2 >= stickDeadZone) {
      while (upDownValue2 >= stickDeadZone) { 
      downPressed2 = true;
-      document.body.innerHTML = 'Right Stick pressed down.';
+      document.body.innerHTML = 'Right joystick pressed down.';
      }
     } else if (upDownValue2 <= -stickDeadZone) {
      while (upDownValue2 <= -stickDeadZone) { 
      upPressed2 = true;
-      document.body.innerHTML = 'Right Stick pressed up.'
+      document.body.innerHTML = 'Right joystick pressed up.'
     }
    }
   downPressed2 = false
