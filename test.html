@@ -61,9 +61,9 @@ function controllerInput(){
   };
 
 function controllerInput2(){
-  const gamepad2 = navigator.getGamepads()[controllerIndex];
-  const left = gamepad2.buttons[3];
-  const right = gamepad2.buttons[2];
+  const gamepad = navigator.getGamepads()[controllerIndex];
+  const left = gamepad.buttons[3];
+  const right = gamepad.buttons[2];
     if (right.pressed) {
       while (right.pressed) {
        rightPressed2 = true;
@@ -78,7 +78,7 @@ function controllerInput2(){
    leftPressed2 = false
  rightPressed2 = false
     
-    const up = gamepad2.buttons[4];
+    const up = gamepad.buttons[4];
     const down = gamepad.buttons[1];
     if (down.pressed) {
      while (down.pressed) { 
