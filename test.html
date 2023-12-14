@@ -59,8 +59,12 @@ function controllerInput(){
   }
    downPressed = false
  upPressed = false
- 
-   const leftRightValue2 = gamepad.axes[4];
+  };
+};
+
+function controllerInput2(){
+ if (controllerIndex !== null){
+  const leftRightValue2 = gamepad.axes[4];
     if (leftRightValue2 >= stickDeadZone) {
       while (leftRightValue2 >= stickDeadZone) {
        rightPressed2 = true;
@@ -88,15 +92,15 @@ function controllerInput(){
       document.body.innerHTML = 'Right joystick pressed up.'
     }
    }
+}
   downPressed2 = false
  upPressed2 = false
-  };
-};
 function inputLoop(){
   controllerInput();
+  controllerInput2();
  requestAnimationFrame(inputLoop);
 };
-
+}
 inputLoop();
   </script>
  </body>
