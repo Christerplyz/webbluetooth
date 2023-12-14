@@ -64,16 +64,16 @@ function controllerInput(){
 
 function controllerInput2(){
  if (controllerIndex !== null){
-  const gamepad = navigator.getGamepads()[controllerIndex];
-    const stickDeadZone = .4;
-  const leftRightValue2 = gamepad.axes[4];
-    if (leftRightValue2 >= stickDeadZone) {
-      while (leftRightValue2 >= stickDeadZone) {
+  const gamepad2 = navigator.getGamepads()[controllerIndex];
+    const stickDeadZone2 = .4;
+  const leftRightValue2 = gamepad2.axes[4];
+    if (leftRightValue2 >= stickDeadZone2) {
+      while (leftRightValue2 >= stickDeadZone2) {
        rightPressed2 = true;
       document.body.innerHTML = 'Right Joystick pressed right.'
       }
-    } else if (leftRightValue2 <= -stickDeadZone) {
-      while (leftRightValue2 <= -stickDeadZone) {
+    } else if (leftRightValue2 <= -stickDeadZone2) {
+      while (leftRightValue2 <= -stickDeadZone2) {
        leftPressed2 = true;
       document.body.innerHTML = 'Right Joystick pressed left.'
     };
@@ -81,15 +81,15 @@ function controllerInput2(){
    leftPressed2 = false
  rightPressed2 = false
     
-    const upDownValue2 = gamepad.axes[3];
+    const upDownValue2 = gamepad2.axes[3];
 
-    if (upDownValue2 >= stickDeadZone) {
-     while (upDownValue2 >= stickDeadZone) { 
+    if (upDownValue2 >= stickDeadZone2) {
+     while (upDownValue2 >= stickDeadZone2) { 
      downPressed2 = true;
       document.body.innerHTML = 'Right joystick pressed down.';
      }
-    } else if (upDownValue2 <= -stickDeadZone) {
-     while (upDownValue2 <= -stickDeadZone) { 
+    } else if (upDownValue2 <= -stickDeadZone2) {
+     while (upDownValue2 <= -stickDeadZone2) { 
      upPressed2 = true;
       document.body.innerHTML = 'Right joystick pressed up.'
     }
