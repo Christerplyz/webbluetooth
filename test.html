@@ -42,6 +42,7 @@ function joystickPressed() {
       document.body.innerHTML = 'Controller pressed up.'
     }
     pressedUp1 = false
+   pressedDown1 = false
   }
   if (leftRightValue1 > deadzone) {
     while (leftRightValue1 > deadzone) {
@@ -54,6 +55,37 @@ function joystickPressed() {
       document.body.innerHTML = 'Controller pressed left.'
     }
   }
+ pressedLeft1 = false
+ pressedRight1 = false
+ 
+ if (upDownValue2 > deadzone) {
+    while (upDownValue2 > deadzone) {
+      pressedDown2 = true
+      document.body.innerHTML = 'Right joystick pressed down.'
+    }
+    pressedDown2 = false
+  } else if (upDownValue2 < -deadzone) {
+    while (upDownValue2 < -deadzone) {
+      pressedUp2 = true
+      document.body.innerHTML = 'Right joystick pressed up.'
+    }
+    pressedUp2 = false
+    pressedDown2 = false
+  
+  }
+ if (leftRightValue2 > deadzone) {
+    while (leftRightValue2 > deadzone) {
+      pressedRight2 = true
+      document.body.innerHTML = 'Right joystick pressed right.'
+    }
+  } else if (leftRightValue2 < -deadzone) {
+    while (leftRightValue2 < -deadzone) {
+      pressedLeft2 = true
+      document.body.innerHTML = 'Right joystick pressed left.'
+    }
+  }
+  pressedLeft2 = false
+  pressedRight2 = false
 }
 
 function gameLoop() {
