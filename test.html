@@ -100,9 +100,12 @@ function controllerInput2(){
 }
 function inputLoop(){
   controllerInput();
+  if (controllerIndex !== null){
+ let gamepad = navigator.getGamepads()[controllerIndex]
  if (gamepad.axes[2] >= stickDeadZone || gamepad.axes[2] <= -stickDeadZone || gamepad.axes[3] >= stickDeadZone || gamepad.axes[3] <= -stickDeadZone){ 
  controllerInput2();
  }
+  }
  requestAnimationFrame(inputLoop);
 };
    
