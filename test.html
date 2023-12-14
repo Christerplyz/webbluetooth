@@ -64,6 +64,8 @@ function controllerInput(){
 
 function controllerInput2(){
  if (controllerIndex !== null){
+  const gamepad = navigator.getGamepads()[controllerIndex];
+    const stickDeadZone = .4;
   const leftRightValue2 = gamepad.axes[4];
     if (leftRightValue2 >= stickDeadZone) {
       while (leftRightValue2 >= stickDeadZone) {
