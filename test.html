@@ -50,8 +50,9 @@ function controllerInput(){
      while (upDownValue >= stickDeadZone) { 
      downPressed = true;
       document.body.innerHTML = 'Joystick pressed down.';
+    }
     } else if (upDownValue <= -stickDeadZone) {
-     while (upDownValue <= -stickDeadZone) 
+     while (upDownValue <= -stickDeadZone) {
      upPressed = true;
       document.body.innerHTML = 'Joystick pressed up.'
     }
