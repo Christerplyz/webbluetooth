@@ -2,7 +2,6 @@
  <head>
  </head>
  <body>
-  <script src="https://www.puck-js.com/puck.js"></script>
   <script>
    let controllerIndex = null;
 
@@ -100,7 +99,9 @@ function controllerInput2(){
 }
 function inputLoop(){
   controllerInput();
-  controllerInput2();
+ if (gamepad.axes[2] >= stickDeadZone || gamepad.axes[2] <= -stickDeadZone || gamepad.axes[3] >= stickDeadZone || gamepad.axes[3] <= -stickDeadZone){ 
+ controllerInput2();
+ }
  requestAnimationFrame(inputLoop);
 };
    
