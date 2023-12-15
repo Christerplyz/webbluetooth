@@ -4,7 +4,91 @@
  </head>
  <body>
   <script>
-let controllerIndex=null,upPressed=!1,downPressed=!1,leftPressed=!1,rightPressed=!1,upPressed2=!1,downPressed2=!1,leftPressed2=!1,rightPressed2=!1;function controllerInput(){if(null!==controllerIndex){var e=navigator.getGamepads()[controllerIndex],s=.4,r=e.axes[0];if(s<=r)for(;s<=r;)rightPressed=!0,document.body.innerHTML="Joystick pressed right.";else if(r<=-s)for(;r<=-s;)leftPressed=!0,document.body.innerHTML="Joystick pressed left.";leftPressed=!1,rightPressed=!1;var d=e.axes[1];if(s<=d)for(;s<=d;)downPressed=!0,document.body.innerHTML="Joystick pressed down.";else if(d<=-s)for(;d<=-s;)upPressed=!0,document.body.innerHTML="Joystick pressed up.";downPressed=!1,upPressed=!1;var n=e.buttons[3],o=e.buttons[2];if(o.pressed)for(;o.pressed;)rightPressed2=!0,document.body.innerHTML="Right Joystick pressed right.";else if(n.pressed)for(;n.pressed;)leftPressed2=!0,document.body.innerHTML="Right Joystick pressed left.";leftPressed2=!1,rightPressed2=!1;var t=e.buttons[4],i=e.buttons[1];if(i.pressed)for(;i.pressed;)downPressed2=!0,document.body.innerHTML="Right joystick pressed down.";else if(t.pressed)for(;t.pressed;)upPressed2=!0,document.body.innerHTML="Right joystick pressed up.";downPressed2=!1,upPressed2=!1}}function inputLoop(){controllerInput(),requestAnimationFrames(inputLoop)}window.addEventListener("gamepadconnected",e=>{controllerIndex=e.gamepad.index,document.body.innerHTML="controller connected"}),window.addEventListener("gamepaddisconnected",e=>{controllerIndex=null,document.body.innerHTML="controller disconnected"});
-</script>
+let controllerIndex = null;
+let upPressed = false;
+let downPressed = false;
+let leftPressed = false;
+let rightPressed = false;
+let upPressed2 = false;
+let downPressed2 = false;
+let leftPressed2 = false;
+let rightPressed2 = false;
+window.addEventListener('gamepadconnected', (event) => {
+  controllerIndex = event.gamepad.index;
+  document.body.innerHTML = 'controller connected';
+});
+window.addEventListener('gamepaddisconnected', (event) => {
+  controllerIndex = null;
+  document.body.innerHTML = 'controller disconnected';
+});
+function controllerInput(){
+ if (controllerIndex !== null){
+    const gamepad = navigator.getGamepads()[controllerIndex];
+    const stickDeadZone = .4;
+    const leftRightValue = gamepad.axes[0];
+    if (leftRightValue >= stickDeadZone) {
+     while (leftRightValue >= stickDeadZone) { 
+     rightPressed = true;
+      document.body.innerHTML = 'Joystick pressed right.'
+     }
+    } else if (leftRightValue <= -stickDeadZone) {
+      while (leftRightValue <= -stickDeadZone) {
+       leftPressed = true;
+      document.body.innerHTML = 'Joystick pressed left.'
+    };
+  }
+  leftPressed = false
+ rightPressed = false  
+    const upDownValue = gamepad.axes[1];
+    if (upDownValue >= stickDeadZone) {
+     while (upDownValue >= stickDeadZone) { 
+     downPressed = true;
+      document.body.innerHTML = 'Joystick pressed down.';
+    }
+    } else if (upDownValue <= -stickDeadZone) {
+     while (upDownValue <= -stickDeadZone) {
+     upPressed = true;
+      document.body.innerHTML = 'Joystick pressed up.'
+    }
+  }
+   downPressed = false
+ upPressed = false
+  const left = gamepad.buttons[3];
+  const right = gamepad.buttons[2];
+    if (right.pressed) {
+      while (right.pressed) {
+       rightPressed2 = true;
+      document.body.innerHTML = 'Right Joystick pressed right.'
+      }
+    } else if (left.pressed) {
+      while (left.pressed) {
+       leftPressed2 = true;
+      document.body.innerHTML = 'Right Joystick pressed left.'
+    };
+   }
+   leftPressed2 = false
+ rightPressed2 = false  
+    const up = gamepad.buttons[4];
+    const down = gamepad.buttons[1];
+    if (down.pressed) {
+     while (down.pressed) { 
+     downPressed2 = true;
+      document.body.innerHTML = 'Right joystick pressed down.';
+     }
+    } else if (up.pressed) {
+     while (up.pressed) { 
+     upPressed2 = true;
+      document.body.innerHTML = 'Right joystick pressed up.'
+    }
+    }
+  downPressed2 = false
+ upPressed2 = false 
+ }
+}
+function inputLoop(){
+ controllerInput()
+ requestAnimationFrames(inputLoop)
+}
+  </script>
  </body>
 </html>
