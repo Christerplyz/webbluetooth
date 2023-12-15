@@ -55,7 +55,9 @@ function inputLoop(){
  controllerInput()
  requestAnimationFrame(inputLoop)
 }
-   console.log('working so far', 10000);
+   setTimeout(function(){
+    console.log('working so far')
+   }, 10000)
    inputLoop()
   </script>
  </body>
