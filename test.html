@@ -6,14 +6,14 @@
   <script>
    let controllerIndex = null;
 
-let pressedUp = false;
-let pressedDown = false;
-let pressedLeft = false;
-let pressedRight = false;
-let pressedUp2 = false;
-let pressedDown2 = false;
-let pressedLeft2 = false;
-let pressedRight2 = false;
+let upPressed = false;
+let downPressed = false;
+let leftPressed = false;
+let rightPressed = false;
+let upPressed2 = false;
+let downPressed2 = false;
+let leftPressed2 = false;
+let rightPressed2 = false;
 
 window.addEventListener('gamepadconnected', (event) => {
   controllerIndex = event.gamepad.index;
