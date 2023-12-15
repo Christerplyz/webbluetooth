@@ -24,21 +24,21 @@ window.addEventListener('gamepaddisconnected', (event) => {
 function controllerInput(){
  if (controllerIndex !== null){
     const gamepad = navigator.getGamepads()[controllerIndex];
-    const stickDeadZone = .4;
+    const stickDeadZone = 0.4;
     const leftRightValue = gamepad.axes[0];
     if (leftRightValue >= stickDeadZone) {
      while (leftRightValue >= stickDeadZone) { 
      rightPressed = true;
-      document.body.innerHTML = 'Joystick pressed right.'
+      document.body.innerHTML = 'Joystick pressed right.';
      }
     } else if (leftRightValue <= -stickDeadZone) {
       while (leftRightValue <= -stickDeadZone) {
        leftPressed = true;
-      document.body.innerHTML = 'Joystick pressed left.'
-    };
+      document.body.innerHTML = 'Joystick pressed left.';
+    }
   }
-  leftPressed = false
- rightPressed = false  
+  leftPressed = false;
+ rightPressed = false; 
     const upDownValue = gamepad.axes[1];
     if (upDownValue >= stickDeadZone) {
      while (upDownValue >= stickDeadZone) { 
@@ -48,26 +48,26 @@ function controllerInput(){
     } else if (upDownValue <= -stickDeadZone) {
      while (upDownValue <= -stickDeadZone) {
      upPressed = true;
-      document.body.innerHTML = 'Joystick pressed up.'
+      document.body.innerHTML = 'Joystick pressed up.';
     }
   }
-   downPressed = false
- upPressed = false
+   downPressed = false;
+ upPressed = false;
   const left = gamepad.buttons[3];
   const right = gamepad.buttons[2];
     if (right.pressed) {
       while (right.pressed) {
        rightPressed2 = true;
-      document.body.innerHTML = 'Right Joystick pressed right.'
+      document.body.innerHTML = 'Right Joystick pressed right.';
       }
     } else if (left.pressed) {
       while (left.pressed) {
        leftPressed2 = true;
-      document.body.innerHTML = 'Right Joystick pressed left.'
-    };
+      document.body.innerHTML = 'Right Joystick pressed left.';
+    }
    }
-   leftPressed2 = false
- rightPressed2 = false  
+   leftPressed2 = false;
+ rightPressed2 = false;
     const up = gamepad.buttons[4];
     const down = gamepad.buttons[1];
     if (down.pressed) {
@@ -78,11 +78,11 @@ function controllerInput(){
     } else if (up.pressed) {
      while (up.pressed) { 
      upPressed2 = true;
-      document.body.innerHTML = 'Right joystick pressed up.'
+      document.body.innerHTML = 'Right joystick pressed up.';
     }
     }
-  downPressed2 = false
- upPressed2 = false 
+  downPressed2 = false;
+ upPressed2 = false;
  }
 }
 function inputLoop(){
