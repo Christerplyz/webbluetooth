@@ -9,6 +9,13 @@ let upPressed = false;
 let downPressed = false;
 let leftPressed = false;
 let rightPressed = false;
+var wait = (ms) => {
+    const start = Date.now();
+    let now = start;
+    while (now - start < ms) {
+      now = Date.now();
+    }
+}
 window.addEventListener('gamepadconnected', (event) => {
   controllerIndex = event.gamepad.index;
   document.body.innerHTML = 'controller connected';
@@ -58,6 +65,8 @@ function inputLoop(){
    setTimeout(function(){
     console.log('working so far')
    }, 10000)
+   document.body.innerHTML = Working so far!
+   wait(10000)
    inputLoop()
   </script>
  </body>
