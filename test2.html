@@ -1,0 +1,60 @@
+<html>
+ <head>
+ <title>Controller testing cuh</title>
+ </head>
+ <body>
+  <script>
+let controllerIndex = null;
+let upPressed = false;
+let downPressed = false;
+let leftPressed = false;
+let rightPressed = false;
+window.addEventListener('gamepadconnected', (event) => {
+  controllerIndex = event.gamepad.index;
+  document.body.innerHTML = 'controller connected';
+});
+window.addEventListener('gamepaddisconnected', (event) => {
+  controllerIndex = null;
+  document.body.innerHTML = 'controller disconnected';
+});
+function controllerInput(){
+ if (controllerIndex !== null){
+    const gamepad = navigator.getGamepads()[controllerIndex];
+    const stickDeadZone = .4;
+    const leftRightValue = gamepad.axes[0];
+    if (leftRightValue >= stickDeadZone) {
+     while (leftRightValue >= stickDeadZone) { 
+     rightPressed = true;
+      document.body.innerHTML = 'Joystick pressed right.'
+     }
+    } else if (leftRightValue <= -stickDeadZone) {
+      while (leftRightValue <= -stickDeadZone) {
+       leftPressed = true;
+      document.body.innerHTML = 'Joystick pressed left.'
+    };
+  }
+  leftPressed = false
+ rightPressed = false  
+    const upDownValue = gamepad.axes[1];
+    if (upDownValue >= stickDeadZone) {
+     while (upDownValue >= stickDeadZone) { 
+     downPressed = true;
+      document.body.innerHTML = 'Joystick pressed down.';
+    }
+    } else if (upDownValue <= -stickDeadZone) {
+     while (upDownValue <= -stickDeadZone) {
+     upPressed = true;
+      document.body.innerHTML = 'Joystick pressed up.'
+    }
+  }
+   downPressed = false
+ upPressed = false
+ }
+}
+function inputLoop(){
+ controllerInput()
+ requestAnimationFrames(inputLoop)
+}
+  </script>
+ </body>
+</html>
