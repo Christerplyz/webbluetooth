@@ -58,10 +58,7 @@ function controllerInput(){
   }
    downPressed = false
  upPressed = false
-  };
-
-function controllerInput2(){
-  const gamepad = navigator.getGamepads()[controllerIndex];
+ 
   const left = gamepad.buttons[3];
   const right = gamepad.buttons[2];
     if (right.pressed) {
@@ -96,21 +93,6 @@ function controllerInput2(){
  }
 
 function inputLoop(){
-  if (controllerIndex !== null){
-   controllerInput();
- controllerInput2();
-  }
- requestAnimationFrame(inputLoop);
+ controllerInput()
+ requestAnimationFrames(inputLoop)
 }
-
-if (controllerIndex !== null){
-inputLoop();
-} else {
- for (let i = null; i !== null; i) {
-  i = controllerIndex     
- }
-}
-   inputLoop()
-  </script>
- </body>
-</html>
