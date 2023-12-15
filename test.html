@@ -26,6 +26,7 @@ window.addEventListener('gamepaddisconnected', (event) => {
 });
 
 function controllerInput(){
+ if (controllerIndex !== null){
     const gamepad = navigator.getGamepads()[controllerIndex];
     const stickDeadZone = .4;
     const leftRightValue = gamepad.axes[0];
@@ -91,6 +92,7 @@ function controllerInput(){
   downPressed2 = false
  upPressed2 = false 
  }
+}
 
 function inputLoop(){
  controllerInput()
