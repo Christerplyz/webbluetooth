@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <title>controller testing cuh</title>
+  </head>
+<body>
+ <script>
+   let controllerIndex = null;
+
+let pressedUp = false;
+let pressedDown = false;
+let pressedLeft = false;
+let pressedRight = false;
+
+window.addEventListener('gamepadconnected', (event) => {
+  controllerIndex = event.gamepad.index;
+  document.body.innerHTML = 'controller connected';
+});
+
+window.addEventListener('gamepaddisconnected', (event) => {
+  controllerIndex = null;
+  document.body.innerHTML = 'controller disconnected';
+});
+
+function controllerInput(){
+  if (controllerIndex !== null) {
+    const gamepad = navigator.getGamepads()[controllerIndex];
+    const stickDeadZone = .4;
+    const leftRightValue = gamepad.axes[0];
+    if (leftRightValue >= stickDeadZone) {
+      rightPressed = true;
+      document.body.innerHTML = 'Joystick pressed right.'
+    } else if (leftRightValue <= -stickDeadZone) {
+      leftPressed = true;
+      document.body.innerHTML = 'Joystick pressed left.'
+    };
+    
+    const upDownValue = gamepad.axes[1];
+
+    if (upDownValue >= stickDeadZone) {
+      downPressed = true;
+      document.body.innerHTML = 'Stick pressed down.';
+    } else if (upDownValue <= -stickDeadZone) {
+      upPressed = true;
+      document.body.innerHTML = 'Stick pressed up.'
+    }
+  };
+};
+function inputLoop(){
+  controllerInput();
+ requestAnimationFrame(inputLoop);
+};
+
+inputLoop();
+ </script> 
+</body>
+</html>
