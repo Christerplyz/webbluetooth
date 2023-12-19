@@ -50,33 +50,33 @@ function controllerInput(){
 
     const downButton = gamepad.buttons[0];
     if (downButton.pressed === true) {
-      down = true
-      document.body.innerHTML = 'Down button pressed.
+      down = true;
+      document.body.innerHTML = 'Down button pressed.';
     }
 
         const rightButton = gamepad.buttons[1];
     if (rightButton.pressed === true) {
-      rigt = true
-      document.body.innerHTML = 'Right button pressed.
+      right = true;
+      document.body.innerHTML = 'Right button pressed.';
     }
 
         const leftButton = gamepad.buttons[2];
     if (leftButton.pressed === true) {
-      left = true
-      document.body.innerHTML = 'Left button pressed.
+      left = true;
+      document.body.innerHTML = 'Left button pressed.';
     }
 
         const upButton = gamepad.buttons[3];
     if (upButton.pressed === true) {
-      up = true
-      document.body.innerHTML = 'Up button pressed.
+      up = true;
+      document.body.innerHTML = 'Up button pressed.';
     }
-  };
-};
+  }
+}
 function inputLoop(){
   controllerInput();
  requestAnimationFrame(inputLoop);
-};
+}
 
 inputLoop();
  </script> 
