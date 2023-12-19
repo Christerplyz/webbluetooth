@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <title>controller testing cuh</title>
+  </head>
+<body>
+ <script>
+   let controllerIndex = null;
+
+let pressedUp = false;
+let pressedDown = false;
+let pressedLeft = false;
+let pressedRight = false;
+let right = false;
+let left = false;
+let up = false;
+let down = false;
+   
+window.addEventListener('gamepadconnected', (event) => {
+  controllerIndex = event.gamepad.index;
+  document.body.innerHTML = 'controller connected';
+});
+
+window.addEventListener('gamepaddisconnected', (event) => {
+  controllerIndex = null;
+  document.body.innerHTML = 'controller disconnected';
+});
+
+function controllerInput(){
+  if (controllerIndex !== null) {
+    const gamepad = navigator.getGamepads()[controllerIndex];
+    const stickDeadZone = .4;
+    const leftRightValue = gamepad.axes[0];
+    if (leftRightValue >= stickDeadZone) {
+      rightPressed = true;
+      document.body.innerHTML = 'Joystick pressed right.'
+    } else if (leftRightValue <= -stickDeadZone) {
+      leftPressed = true;
+      document.body.innerHTML = 'Joystick pressed left.'
+    };
+    
+    const upDownValue = gamepad.axes[1];
+
+    if (upDownValue >= stickDeadZone) {
+      downPressed = true;
+      document.body.innerHTML = 'Stick pressed down.';
+    } else if (upDownValue <= -stickDeadZone) {
+      upPressed = true;
+      document.body.innerHTML = 'Stick pressed up.'
+    }
+
+    const downButton = gamepad.buttons[0];
+    if (downButton.pressed === true) {
+      down = true
+      document.body.innerHTML = 'Down button pressed.
+    }
+
+        const rightButton = gamepad.buttons[1];
+    if (rightButton.pressed === true) {
+      rigt = true
+      document.body.innerHTML = 'Right button pressed.
+    }
+
+        const leftButton = gamepad.buttons[2];
+    if (leftButton.pressed === true) {
+      left = true
+      document.body.innerHTML = 'Left button pressed.
+    }
+
+        const upButton = gamepad.buttons[3];
+    if (upButton.pressed === true) {
+      up = true
+      document.body.innerHTML = 'Up button pressed.
+    }
+  };
+};
+function inputLoop(){
+  controllerInput();
+ requestAnimationFrame(inputLoop);
+};
+
+inputLoop();
+ </script> 
+</body>
+</html>
