@@ -31,46 +31,68 @@ function controllerInput(){
     const stickDeadZone = .4;
     const leftRightValue = gamepad.axes[0];
     if (leftRightValue >= stickDeadZone) {
-      rightPressed = true;
+      while (leftRightValue >= stickDeadZone) {
+        rightPressed = true;
       document.body.innerHTML = 'Joystick pressed right.'
+      }
     } else if (leftRightValue <= -stickDeadZone) {
-      leftPressed = true;
+      while (leftRightValue <= -stickDeadZone) {
+        leftPressed = true;
       document.body.innerHTML = 'Joystick pressed left.'
     };
-    
+    }
+    leftPressed = false;
+    rightPressed = false;
     const upDownValue = gamepad.axes[1];
 
     if (upDownValue >= stickDeadZone) {
-      downPressed = true;
+      while (upDownValue >= stickDeadZone) {
+        downPressed = true;
       document.body.innerHTML = 'Stick pressed down.';
+      }
     } else if (upDownValue <= -stickDeadZone) {
-      upPressed = true;
+      while upDownValue <= -stickDeadZone) {
+        upPressed = true;
       document.body.innerHTML = 'Stick pressed up.'
     }
-
+    }
+    upPressed = false;
+    downPressed = false;
+    
     const downButton = gamepad.buttons[0];
     if (downButton.pressed === true) {
-      down = true;
+      while (downButton.pressed === true) {
+        down = true;
       document.body.innerHTML = 'Down button pressed.';
     }
-
+    }
+    down = false;
         const rightButton = gamepad.buttons[1];
     if (rightButton.pressed === true) {
-      right = true;
+      while (rightButton.pressed === true) {
+        right = true;
       document.body.innerHTML = 'Right button pressed.';
     }
-
+    }
+    right = false;
+    
         const leftButton = gamepad.buttons[2];
     if (leftButton.pressed === true) {
-      left = true;
+      while (leftButton.pressed === true) {
+        left = true;
       document.body.innerHTML = 'Left button pressed.';
     }
-
+    }
+    left = false;
+    
         const upButton = gamepad.buttons[3];
     if (upButton.pressed === true) {
-      up = true;
+      while (upButton.pressed === true) {
+        up = true;
       document.body.innerHTML = 'Up button pressed.';
     }
+  }
+    up = false;
   }
 }
 function inputLoop(){
