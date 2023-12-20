@@ -31,10 +31,8 @@ function controllerInput(){
     const stickDeadZone = .4;
     const leftRightValue = gamepad.axes[0];
     if (leftRightValue >= stickDeadZone) {
-      while (leftRightValue >= stickDeadZone) {
         rightPressed = true;
       document.body.innerHTML = 'Joystick pressed right.'
-      }
     } else if (leftRightValue <= -stickDeadZone) {
         leftPressed = true;
       document.body.innerHTML = 'Joystick pressed left.'
@@ -42,10 +40,8 @@ function controllerInput(){
     const upDownValue = gamepad.axes[1];
 
     if (upDownValue >= stickDeadZone) {
-      while (upDownValue >= stickDeadZone) {
         downPressed = true;
       document.body.innerHTML = 'Stick pressed down.';
-      }
     } else if (upDownValue <= -stickDeadZone) {
         upPressed = true;
       document.body.innerHTML = 'Stick pressed up.'
